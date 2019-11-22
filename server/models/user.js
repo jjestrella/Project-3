@@ -7,7 +7,9 @@ module.exports = function(sequelize, DataTypes) {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: {
+        msg: "That email already exists in our system."
+      },
       validate: {
         isEmail: true
       }
@@ -27,5 +29,10 @@ module.exports = function(sequelize, DataTypes) {
   User.addHook("beforeCreate", function(user) {
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
   });
+
+  User.associate = function (models) {
+    User.hasMany(models.Candle);
+  }
+
   return User;
 };
