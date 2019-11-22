@@ -1,31 +1,53 @@
-// Requiring path to so we can use relative routes to our HTML files
-var path = require("path");
+const router = require("express").Router();
+const db = require("../models");
 
 // Requiring our custom middleware for checking if a user is logged in
-var isAuthenticated = require("../config/middleware/isAuthenticated");
+const isAuthenticated = require("../config/middleware/isAuthenticated");
 
-module.exports = function(app) {
+// Requiring our custom middleware for checking if a user isn't logged in
+const isNotAuthenticated = require("../config/middleware/isNotAuthenticated");
 
-  app.get("/", function(req, res) {
-    // If the user already has an account send them to the members page
-    if (req.user) {
-      res.redirect("/members");
-    }
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
-  });
 
-  app.get("/login", function(req, res) {
-    // If the user already has an account send them to the members page
-    if (req.user) {
-      res.redirect("/members");
-    }
-    res.sendFile(path.join(__dirname, "../public/login.html"));
-  });
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//                        Middleware section                               //
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+// usually we don't separate the middleware section like this from the
+// page routes below this section, but for this example it helps us
+// to see the difference between handlebars and react
 
-  // Here we've add our isAuthenticated middleware to this route.
-  // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/members", isAuthenticated, function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/members.html"));
-  });
+// These routes should redirect to home page if they are already logged in:
+router.route(["/signup", "/login"]).get(isNotAuthenticated);
 
-};
+// These routes should redirect to login page if they are not logged in:
+router.route(["/", "/candle", "/candle/create"]).get(isAuthenticated);
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//                      END Middleware section                             //
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+
+
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//                       HTML Routes section                               //
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+// Send every request to the React app and let frontend routing handle pages
+// Define any API routes before this runs
+router.route([
+    "/",
+    "/signup",
+    "/login",
+    "/candle",
+    "/candle/create"
+  ]).get(function(req, res) {
+  res.sendFile(path.join(__dirname, "../../client/build/index.html"));
+});
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//                     END HTML Routes section                             //
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+// add a status of 404 to any page request that isn't listed above
+router.get("*", function (req, res) {
+  res.status(404).sendFile(path.join(__dirname, "../../client/build/index.html"));
+});
+
+module.exports = router;
