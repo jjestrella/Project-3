@@ -1,26 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable react/prefer-stateless-function */
+import React from "react";
+// import User from "./utils/Stores/User";
+// import { BrowserRouter } from "react-router-dom";
+// import Routes from './routes';
+import 
+  ButtonAppBar
+ from "./components/ButtonAppBar/ButtonAppBar";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ButtonAppBar />
   );
 }
 
 export default App;
+
