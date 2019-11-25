@@ -1,6 +1,6 @@
-import React, { Fragment } from "./node_modules/react";
+import React, { Fragment } from "../../node_modules/react";
 import User from "../utils/Stores/User";
-import { Switch, Route } from "./node_modules/react-router-dom";
+import { Switch, Route } from "../../node_modules/react-router-dom";
 import {
     LoggedInRoute,
     LoggedOutRoute
@@ -17,7 +17,7 @@ function Routes() {
     return (
         <Fragment>
                 <Switch>
-                    <LoggedInRoute exact path="/" component={Home} />
+                    <LoggedOutRoute exact path="/" component={Home} />
                     <LoggedOutRoute exact path="/login" component={Login} />
                     <LoggedOutRoute exact path="/signup" component={Signup} />
                     <Route path="*" component={NotFound} />

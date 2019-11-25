@@ -29,7 +29,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             BCS Stocks
           </Typography>
-          <Button color="inherit">Signup</Button>
+          <Button href= "/signup" color="inherit">Signup</Button>
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
