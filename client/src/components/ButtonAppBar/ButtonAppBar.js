@@ -30,7 +30,7 @@ export default function ButtonAppBar() {
             BCS Stocks
           </Typography>
           <Button href= "/signup" color="inherit">Signup</Button>
-          <Button color="inherit">Login</Button>
+          <Button href= "login" color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
     </div>
