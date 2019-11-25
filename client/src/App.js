@@ -1,15 +1,16 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from "react";
-// import User from "./utils/Stores/User";
-// import { BrowserRouter } from "react-router-dom";
-// import Routes from './routes';
-import 
-  ButtonAppBar
- from "./components/ButtonAppBar/ButtonAppBar";
+import User from "./utils/Stores/User";
+import { BrowserRouter } from "react-router-dom";
+import Routes from "./Routes";
 
 function App() {
   return (
-    <ButtonAppBar />
+    <BrowserRouter>
+      <User.Provider>
+        <Routes />
+      </User.Provider>
+    </BrowserRouter>
   );
 }
 
