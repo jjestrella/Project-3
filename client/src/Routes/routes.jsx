@@ -10,20 +10,20 @@ import {
     Login,
     Signup,
     Home,
-    Portfolio
+    PortfolioHome
 } from "../pages";
 
 function Routes() {
     User.refreshOnLoad();
     return (
         <Fragment>
-                <Switch>
-                    <LoggedOutRoute exact path="/" component={Home} />
-                    <LoggedOutRoute exact path="/login" component={Login} />
-                    <LoggedOutRoute exact path="/signup" component={Signup} />
-                    <LoggedInRoute exact path= "/portfolio" component={Portfolio} />
-                    <Route path="*" component={NotFound} />
-                </Switch>
+            <Switch>
+                <LoggedOutRoute exact path="/" component={Home} />
+                <LoggedOutRoute exact path="/login" component={Login} />
+                <LoggedOutRoute exact path="/signup" component={Signup} />
+                <LoggedInRoute exact path= "/portfoliohome" component={PortfolioHome} />
+                <Route path="*" component={NotFound} />
+            </Switch>
         </Fragment>
     );
 }

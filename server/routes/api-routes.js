@@ -13,7 +13,7 @@ router.post("/api/login", passport.authenticate("local"), function (req, res) {
   res.json({
     email: req.user.email,
     id: req.user.id
-  });
+  })
 });
 
 // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to

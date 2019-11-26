@@ -6,5 +6,5 @@ module.exports = function(req, res, next) {
     }
   
     // If the user is logged in, redirect them to the home page
-    return res.redirect("/portfolio");
+    return res.redirect("/portfoliohome");
   };
