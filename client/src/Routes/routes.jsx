@@ -10,6 +10,7 @@ import {
     Login,
     Signup,
     Home,
+    Portfolio
 } from "../pages";
 
 function Routes() {
@@ -20,6 +21,7 @@ function Routes() {
                     <LoggedOutRoute exact path="/" component={Home} />
                     <LoggedOutRoute exact path="/login" component={Login} />
                     <LoggedOutRoute exact path="/signup" component={Signup} />
+                    <LoggedInRoute exact path= "/portfolio" component={Portfolio} />
                     <Route path="*" component={NotFound} />
                 </Switch>
         </Fragment>
