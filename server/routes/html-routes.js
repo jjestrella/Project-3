@@ -16,10 +16,10 @@ const isNotAuthenticated = require("../config/middleware/isNotAuthenticated");
 // to see the difference between handlebars and react
 
 // These routes should redirect to home page if they are already logged in:
-router.route(["/signup", "/login"]).get(isNotAuthenticated);
+router.route(["/signup", "/login", "/"]).get(isNotAuthenticated);
 
 // These routes should redirect to login page if they are not logged in:
-router.route(["/portfolio", "/portfolio/add"]).get(isAuthenticated);
+router.route(["/portfoliohome", "/portfolio/add"]).get(isAuthenticated);
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 //                      END Middleware section                             //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -37,7 +37,7 @@ router.route([
     "/",
     "/signup",
     "/login",
-    "/portfolio",
+    "/portfoliohome",
     "/portfolio/add"
   ]).get(function(req, res) {
   res.sendFile(path.join(__dirname, "../../client/build/index.html"));

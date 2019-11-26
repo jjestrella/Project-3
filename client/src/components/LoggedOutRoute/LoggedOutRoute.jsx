@@ -6,7 +6,7 @@ export default ({ component: Component, ...props }) => {
     return (
         <Route {...props} render={(props) => (
         user.email
-            ? <Redirect to='/' />
+            ? <Redirect to='/portfoliohome' />
             : <Component {...props} />
         )} />
     )

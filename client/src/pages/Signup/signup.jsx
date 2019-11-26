@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Container from '@material-ui/core/Container';
-import { UserForm } from '../../components';
+import { UserFormSignUp } from '../../components';
 import User from '../../utils/Stores/User';
 
 function EmailMessage() {
@@ -31,7 +31,7 @@ export default function () {
 
     return (
         <Container className="mt-5">
-          <UserForm
+          <UserFormSignUp
               name="Sign Up"
               className="signup"
               api={User.API.signup}

@@ -16,14 +16,19 @@ export default {
           json: true,
           gzip: true
         });
-    },
-    getDogsOfBreed: function(breed) {
-      return axios.get("https://dog.ceo/api/breed/" + breed + "/images");
-    },
-    getBaseBreedsList: function() {
-      return axios.get("https://dog.ceo/api/breeds/list");
     }
-  };
+
+
+
+
+    
+//     getDogsOfBreed: function(breed) {
+//       return axios.get("https://dog.ceo/api/breed/" + breed + "/images");
+//     },
+//     getBaseBreedsList: function() {
+//       return axios.get("https://dog.ceo/api/breeds/list");
+//     }
+//   };
 
 // const rp = require('request-promise');
 // const latestListings = {
