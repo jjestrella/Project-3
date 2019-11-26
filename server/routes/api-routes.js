@@ -2,6 +2,11 @@
 const db = require("../models");
 const passport = require("../config/passport");
 const router = require("express").Router();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config()
+}
+
+const axios = require("axios");
 
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticatedData = require("../config/middleware/isAuthenticatedData");
@@ -38,6 +43,16 @@ router.get("/logout", function (req, res) {
   res.redirect("/");
 });
 
+const apiKey  = `CMC_PRO_API_KEY=${process.env.CMC_PRO_API_KEY}`;
+
+router.get("/api/crypto", function (req, res) {
+    return axios.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?" + apiKey, {params: {
+        start: '1',
+        limit: '10',
+        convert: 'USD'
+    }}).then(({data}) => res.json(data)).catch(err => res.status(500).send);
+});
+
 // Route for logging user out
 router.post("/api/logout", function (req, res) {
   req.logout();
@@ -59,7 +74,7 @@ router.get("/api/user_data", function (req, res) {
   }
 });
 
-router.get("/api/portfolio", isAuthenticatedData, function (req, res) {
+router.get("/api/portfoliohome", isAuthenticatedData, function (req, res) {
   db.Candle.findAll({
     where: {
       UserId: req.user.id
@@ -72,7 +87,7 @@ router.get("/api/portfolio", isAuthenticatedData, function (req, res) {
       res.status(500).json(err);
     });
 });
-router.post("/api/portfolio", isAuthenticatedData, function (req, res) {
+router.post("/api/portfoliohome", isAuthenticatedData, function (req, res) {
   db.Candle.create({
     name: req.body.name,
     scent: req.body.scent,
