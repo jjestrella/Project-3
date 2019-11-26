@@ -17,13 +17,13 @@ function Routes() {
     User.refreshOnLoad();
     return (
         <Fragment>
-                <Switch>
-                    <LoggedOutRoute exact path="/" component={Home} />
-                    <LoggedOutRoute exact path="/login" component={Login} />
-                    <LoggedOutRoute exact path="/signup" component={Signup} />
-                    <LoggedInRoute exact path= "/portfoliohome" component={PortfolioHome} />
-                    <Route path="*" component={NotFound} />
-                </Switch>
+            <Switch>
+                <LoggedOutRoute exact path="/" component={Home} />
+                <LoggedOutRoute exact path="/login" component={Login} />
+                <LoggedOutRoute exact path="/signup" component={Signup} />
+                <LoggedInRoute exact path= "/portfoliohome" component={PortfolioHome} />
+                <Route path="*" component={NotFound} />
+            </Switch>
         </Fragment>
     );
 }
