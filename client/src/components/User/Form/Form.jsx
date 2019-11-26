@@ -64,6 +64,8 @@ export default function SignUp({
 
   const handleSubmit = event => {
     event.preventDefault();
+    console.log(emailInput.current.value);
+    console.log(passwordInput.current.value);
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
         setValidated(true);
@@ -100,7 +102,8 @@ export default function SignUp({
         <form 
           validated={validated}
           className={classes.form} 
-          noValidate>
+          noValidate
+          onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -133,7 +136,7 @@ export default function SignUp({
                 name="email"
                 autoComplete="email"
                 pattern = {emailPattern}
-                ref={emailInput}
+                inputRef={emailInput}
               />
             </Grid>
             <Grid item xs={12}>
@@ -147,7 +150,7 @@ export default function SignUp({
                 id="password"
                 autoComplete="current-password"
                 pattern={passwordPattern}
-                ref={passwordInput}
+                inputRef={passwordInput}
               />
             </Grid>
           </Grid>
@@ -157,7 +160,7 @@ export default function SignUp({
             variant="contained"
             color="primary"
             className={classes.submit}
-            onSubmit={handleSubmit}
+            
           >
             Sign Up
           </Button>

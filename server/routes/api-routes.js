@@ -59,7 +59,7 @@ router.get("/api/user_data", function (req, res) {
   }
 });
 
-router.get("/api/candles", isAuthenticatedData, function (req, res) {
+router.get("/api/portfolio", isAuthenticatedData, function (req, res) {
   db.Candle.findAll({
     where: {
       UserId: req.user.id
@@ -72,7 +72,7 @@ router.get("/api/candles", isAuthenticatedData, function (req, res) {
       res.status(500).json(err);
     });
 });
-router.post("/api/candles", isAuthenticatedData, function (req, res) {
+router.post("/api/portfolio", isAuthenticatedData, function (req, res) {
   db.Candle.create({
     name: req.body.name,
     scent: req.body.scent,
