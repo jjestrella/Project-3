@@ -2,26 +2,9 @@
 const db = require("../models");
 const passport = require("../config/passport");
 const router = require("express").Router();
-const axios = require("axios");
-const apiKey  = "CMC_PRO_API_KEY=186d9557-8ad1-4f1d-8be1-5af77b161e7e";
 
-axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest/' + apiKey, {
-  params: {
-    start: '1',
-    limit: '10',
-    convert: 'USD,BTC'
-  }
-})
 
-router.get("/api/crypto", function (req, res) {
-  axios.get ('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest/' + apiKey, {
-    params: {
-      start: '1',
-      limit: '10',
-      convert: 'USD,BTC'
-    }
-  });
-});
+
 
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticatedData = require("../config/middleware/isAuthenticatedData");
