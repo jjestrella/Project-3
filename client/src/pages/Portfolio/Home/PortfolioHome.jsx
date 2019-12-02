@@ -3,6 +3,7 @@ import User from "../../../utils/Stores/User"
 import API from "../../../utils/Stores/Cryptos/cryptoAPI"
 import AppBar from "../../../components/AppBar/AppBar"
 
+
 export default function(){
     User.refreshOnLoad();
 
