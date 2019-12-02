@@ -38,7 +38,8 @@ router.route([
     "/signup",
     "/login",
     "/portfoliohome",
-    "/portfolio/add"
+    "/portfolio/add",
+    "/market"
   ]).get(function(req, res) {
   res.sendFile(path.join(__dirname, "../../client/build/index.html"));
 });
