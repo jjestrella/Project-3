@@ -14,6 +14,7 @@ import {
 } from "../pages";
 
 function Routes() {
+    const [{ pageLoading }] = User.useContext();
     User.refreshOnLoad();
     return (
         <Fragment>
@@ -22,6 +23,7 @@ function Routes() {
                 <LoggedOutRoute exact path="/login" component={Login} />
                 <LoggedOutRoute exact path="/signup" component={Signup} />
                 <LoggedInRoute exact path= "/portfoliohome" component={PortfolioHome} />
+                <LoggedOutRoute exact path= "/logout" component={Home}/>
                 <Route path="*" component={NotFound} />
             </Switch>
         </Fragment>

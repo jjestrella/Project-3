@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Container from '@material-ui/core/Container';
 import { UserLoginForm } from '../../components';
 import User from '../../utils/Stores/User';
+import AppBar from "../../components/AppBar/AppBar"
 
 function EmailMessage() {
     return (
@@ -30,15 +31,18 @@ export default function () {
     User.refreshOnLoad();
 
     return (
-        <Container className="mt-5">
-          <UserLoginForm
-              name="Log In"
-              className="login"
-              api={User.API.login}
-              passwordPattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-              EmailMessage={EmailMessage}
-              PasswordMessage={PasswordMessage}
-          />
-        </Container>
+        <Fragment>
+            <AppBar/>
+            <Container className="mt-5">
+                <UserLoginForm
+                    name="Log In"
+                    className="login"
+                    api={User.API.login}
+                    passwordPattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                    EmailMessage={EmailMessage}
+                    PasswordMessage={PasswordMessage}
+                />
+            </Container>
+        </Fragment>
     );
 }
