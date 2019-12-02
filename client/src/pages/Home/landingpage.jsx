@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import React, { Fragment } from "react";
 import React from "react";
 import User from '../../utils/Stores/User';
@@ -32,6 +33,12 @@ const useStyles = makeStyles(theme => ({
       color: theme.palette.text.secondary,
     },
   }));
+=======
+import React from "react";
+import User from '../../utils/Stores/User';
+import AppBar from "../../components/AppBar/AppBar"
+
+>>>>>>> origin
 
 export default function () {
     User.refreshOnLoad();

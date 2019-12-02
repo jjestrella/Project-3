@@ -1,11 +1,11 @@
 import LoggedInRoute from "./LoggedInRoute";
 import LoggedOutRoute from "./LoggedOutRoute";
-import ButtonAppBar from "./ButtonAppBar/ButtonAppBar";
+import NavAppBar from "./AppBar/AppBar";
 
 export {
     LoggedInRoute,
     LoggedOutRoute,
-    ButtonAppBar
+    NavAppBar
 }
 
 export * from "./User";
