@@ -4,27 +4,7 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      current_price: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
-      market_cap: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      available_supply: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
-      total_supply: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      }, 
-      bought_at: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
-      quantity_bought: {
+      quantity: {
           type: DataTypes.INTEGER,
           allowNull: false
       }

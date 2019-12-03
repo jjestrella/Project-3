@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import { withStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
+import BuyButton from "./buyButton";
 
 const StyledTableCell = withStyles(theme => ({
     head: {
@@ -27,7 +27,6 @@ class MarketRow extends Component {
     crypto = this.props.crypto;
     render(){
         return (
-            <TableBody>
                 <StyledTableRow key={this.crypto.name}>
                     <StyledTableCell component="th" scope="row">
                         {this.crypto.name}
@@ -38,10 +37,9 @@ class MarketRow extends Component {
                     <StyledTableCell align="center">{this.crypto.availSupply} {this.crypto.name}</StyledTableCell>
                     <StyledTableCell align="center">{this.crypto.totalSupply} {this.crypto.name}</StyledTableCell>
                     <StyledTableCell align="center">
-                        <Button>Action</Button>
+                        <BuyButton crypto={this.crypto}/>
                     </StyledTableCell>
                 </StyledTableRow>
-            </TableBody>
         )
     }
 }
