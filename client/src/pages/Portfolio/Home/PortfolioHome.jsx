@@ -72,6 +72,7 @@ createData('Gingerbread', 356, 16.0, 49, 3.9),
 export default function(){
     User.refreshOnLoad();
     const classes = useStyles();
+    const [{user}] = User.useContext();
     
     const [open, setOpen] = React.useState(false);
 
@@ -101,7 +102,7 @@ export default function(){
                     Portfolio Value: (import from db)
                 </Typography>
                 <Typography  variant="h6" component="h3">
-                    Unspent: (import from db after calc)
+                    Unspent: ${user.spending_cash}
                 </Typography>
                 <Link to="/market">
                     <Button variant="contained" color="primary">Market</Button>
