@@ -61,8 +61,6 @@ class BuyButton extends Component {
                 >
                     <Fade in={this.state.isOpen}>
                     <div className={this.props.classes.paper}>
-                        <h2 id="transition-modal-title">Transition modal</h2>
-                        <p id="transition-modal-description">react-transition-group animates me.</p>
                         <BuyForm crypto={this.props.crypto}/>
                     </div>
                     </Fade>
