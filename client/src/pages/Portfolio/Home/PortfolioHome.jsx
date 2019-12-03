@@ -1,10 +1,4 @@
-<<<<<<< HEAD
 import React, { useEffect, Fragment, useState } from "react";
-import User from "../../../utils/Stores/User"
-import API from "../../../utils/Stores/Cryptos/cryptoAPI"
-import AppBar from "../../../components/AppBar/AppBar"
-=======
-import React, { useEffect, Fragment } from "react";
 import User from "../../../utils/Stores/User";
 import API from "../../../utils/Stores/Cryptos/cryptoAPI";
 import AppBar from "../../../components/AppBar/AppBar";
@@ -22,6 +16,8 @@ import Fade from "@material-ui/core/Fade";
 import Backdrop from "@material-ui/core/Backdrop";
 import TextField from "@material-ui/core/TextField"
 import { Link } from "react-router-dom";
+
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -73,19 +69,14 @@ createData('Eclair', 262, 16.0, 24, 6.0),
 createData('Cupcake', 305, 3.7, 67, 4.3),
 createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
->>>>>>> origin
 
 
 export default function() {
     const [cryptos, setCryptos] = useState([]);
     User.refreshOnLoad();
-<<<<<<< HEAD
-   
-=======
     const classes = useStyles();
     
     const [open, setOpen] = React.useState(false);
->>>>>>> origin
 
     useEffect(() => {
         API.getCryptos()
@@ -97,27 +88,6 @@ export default function() {
             .catch(err => {
                 console.log(err)
             })
-<<<<<<< HEAD
-    }, []);
-   
-        return (
-            <Fragment>
-            <AppBar/>
-            <div>
-                this will be the member page
-            </div>
-        
-        <ul>
-            {Object.keys(cryptos).map((item, i) => 
-                <li key={i}>
-                <span className="input-label">{ cryptos[item].name }</span>
-                </li>)}  
-        </ul>
-        </Fragment>);
-    
-    } 
-  
-=======
     }, [])
 
     const handleOpen = () => {
@@ -126,17 +96,20 @@ export default function() {
 
     const handleClose = () => {
         setOpen(false);
+
+        
     };
+    const [{user}] = User.useContext();
     
     return(
         <Fragment>
             <AppBar/>
             <Paper className={classes.root}>
                 <Typography variant="h5" component="h3">
-                    Portfolio Value: (import from db)
+                    Portfolio Value: 
                 </Typography>
                 <Typography  variant="h6" component="h3">
-                    Unspent: (import from db after calc)
+                    Unspent: ${user.spending_cash}
                 </Typography>
                 <Link to="/market">
                     <Button variant="contained" color="primary">Market</Button>
@@ -220,4 +193,3 @@ export default function() {
         </Fragment>
     )
 }
->>>>>>> origin

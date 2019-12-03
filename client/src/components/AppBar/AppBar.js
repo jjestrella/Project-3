@@ -17,9 +17,14 @@ const useStyles = makeStyles(theme => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
+  //  position: "relative",
+  //  left: "80%"
   },
   title: {
-    flexGrow: 1,
+  flexGrow: 1,
+  left: "-40%"
+
+    
   },
 }));
 
@@ -39,16 +44,16 @@ export default function NavAppBar() {
       <AppBar position="static">
         {!user.email && (
             <Toolbar>
-                <Typography variant="h6" className={classes.title}>
-                BCS Stocks
-                </Typography>
+                <Button href="/" color="inherit" variant="h6" className={classes.title}>
+                BCS Stocks 
+                </Button>
                 <Button href= "/signup" color="inherit">Signup</Button>
                 <Button href= "/login" color="inherit">Login</Button>
           </Toolbar>
         )}
         {user.email && (<Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <Button href="/portfoliohome" color="inherit">BCS Stocks</Button>
+            <Button href="/portfoliohome" color="inherit">Portfolio</Button>
           </Typography>
           <Button onClick={logout} color="inherit">Logout</Button>
         </Toolbar>)}

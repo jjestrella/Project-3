@@ -7,6 +7,10 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Image from '../../styles/550e7c43-0952-4eb9-a62f-4b3a1c9ad953.jpg';
+import MarketTable from '../../components/MarketTable/marketTable';
+import { Link } from "react-router-dom";
+import Box from '@material-ui/core/Box';
+
 
 
 
@@ -15,12 +19,14 @@ const useStyles = makeStyles(theme => ({
       padding: theme.spacing(25, 2),
       backgroundImage: `url(${Image})`,
       justifyContent: "center",
+      
     
 
     },
     rootTwo: {
         padding: theme.spacing(25, 2),
       backgroundColor: "#fff8e1",
+       
     }, 
     btnroot: {
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -50,24 +56,31 @@ export default function () {
         <Fragment>
        <AppBar />
         <Paper className={classes.root}>
-        <Typography variant="h1" component="h3">
+        <Typography variant="h1" component="h5">
+        <Box textAlign="center" m={1}>
+        dio operae, eu vulputate felis rhoncus.
+      </Box>
           This is a sheet of paper.
         </Typography>
         <Typography component="p">
           Paper can be used to build surface or other elements for your application.
         </Typography>
-        <Button justifyContent="center" className={classes.btnroot} href="/signup" >Start Playing Today!</Button>
+        <Link to="/signup">
+        <Button justifyContent="center" className={classes.btnroot} >Start Playing Today!</Button>
+        </Link>
       </Paper>
       <Divider />
 
-      <Paper className={classes.rootTwo}>
-        <Typography variant="h5" component="h3">
-          This is a sheet of paper.
+      <Paper textAlign="center" className={classes.rootTwo}>
+        <Typography textAlign="center" variant="h5" component="h3">
+          About
         </Typography>
-        <Typography component="p">
+        <Typography textAlign="right" component="p">
           Paper can be used to build surface or other elements for your application.
         </Typography>
       </Paper>
+
+      <MarketTable />
     </Fragment>
    );
  }
