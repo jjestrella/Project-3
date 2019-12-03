@@ -6,13 +6,16 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import Image from '../../styles/550e7c43-0952-4eb9-a62f-4b3a1c9ad953.jpg';
 
 
 
 const useStyles = makeStyles(theme => ({
     root: {
       padding: theme.spacing(25, 2),
-      backgroundColor: "#607d8b",
+      backgroundImage: `url(${Image})`,
+      justifyContent: "center",
+    
 
     },
     rootTwo: {
@@ -28,10 +31,12 @@ const useStyles = makeStyles(theme => ({
         padding: '0 30px',
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
         
+        
       },
       label: {
         textTransform: 'capitalize',
       },
+      
     
   }));
 
@@ -51,7 +56,7 @@ export default function () {
         <Typography component="p">
           Paper can be used to build surface or other elements for your application.
         </Typography>
-        <Button className={classes.btnroot} href="/signup" >Start Playing Today!</Button>
+        <Button justifyContent="center" className={classes.btnroot} href="/signup" >Start Playing Today!</Button>
       </Paper>
       <Divider />
 
