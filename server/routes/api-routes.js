@@ -20,7 +20,8 @@ var isAuthenticatedData = require("../config/middleware/isAuthenticatedData");
 router.post("/api/login", passport.authenticate("local"), function (req, res) {
   res.json({
     email: req.user.email,
-    id: req.user.id
+    id: req.user.id,
+    spending_cash: req.user.spending_cash
   })
 });
 
@@ -30,7 +31,8 @@ router.post("/api/login", passport.authenticate("local"), function (req, res) {
 router.post("/api/signup", function (req, res) {
   db.User.create({
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    spending_cash: 20000
   })
     .then(function () {
       res.redirect(307, "/api/login");
@@ -72,7 +74,8 @@ router.get("/api/user_data", function (req, res) {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
-      id: req.user.id
+      id: req.user.id,
+      spending_cash: req.user.spending_cash
     });
   }
 });
