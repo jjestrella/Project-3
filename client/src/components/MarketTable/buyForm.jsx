@@ -6,7 +6,7 @@ import User from "../../utils/Stores/User";
 import API from "../../utils/Stores/Cryptos/cryptoAPI";
 import APIUser from "../../utils/Stores/User/UserAPI";
 import { useHistory } from 'react-router-dom';
-import Snackbar from "../Snackbar/snackBar";
+// import Snackbar from "../Snackbar/snackBar";
 
 
 const useStyles = makeStyles(theme => ({
@@ -17,11 +17,16 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+// const { USER_LOADING, SET_USER, USER_ERROR } = User.actions;
+
 function BuyForm(props) {
-  
+  User.refreshOnLoad();
+
   const [{user}] = User.useContext();
   const classes = useStyles();
   const history = useHistory();
+  
+  // const [/* user not needed */, userDispatch] = User.useContext();
 
   const [quantity, setQuantity] = useState(0);
   const [total, setTotal] = useState(0);
@@ -68,6 +73,8 @@ function BuyForm(props) {
       console.log(newTotal);
       setCrypto(props.crypto.name, quantity, user.id);
       setUserTotal(newTotal);
+      // userDispatch({ type: USER_LOADING });
+
       history.push("/portfoliohome");
     }
 
@@ -77,7 +84,7 @@ function BuyForm(props) {
       return (
         <Fragment>
         <h2 id="transition-modal-title">Market</h2>
-      <p id="transition-modal-description">Buy {props.crypto.name}</p>
+        <p id="transition-modal-description">Buy {props.crypto.name}</p>
         <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
             <TextField
                 label="Quantity"

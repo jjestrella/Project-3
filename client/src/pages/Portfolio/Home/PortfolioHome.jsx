@@ -72,7 +72,6 @@ createData('Gingerbread', 356, 16.0, 49, 3.9),
 export default function(){
     User.refreshOnLoad();
     const classes = useStyles();
-    const [{user}] = User.useContext();
     
     const [open, setOpen] = React.useState(false);
 
@@ -93,6 +92,9 @@ export default function(){
     const handleClose = () => {
         setOpen(false);
     };
+
+    
+    const [{user}] = User.useContext();
     
     return(
         <Fragment>
