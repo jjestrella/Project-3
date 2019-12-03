@@ -19,7 +19,7 @@ const isNotAuthenticated = require("../config/middleware/isNotAuthenticated");
 router.route(["/signup", "/login", "/"]).get(isNotAuthenticated);
 
 // These routes should redirect to login page if they are not logged in:
-router.route(["/portfoliohome", "/portfolio/add"]).get(isAuthenticated);
+router.route(["/portfoliohome", "/market"]).get(isAuthenticated);
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 //                      END Middleware section                             //
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -38,7 +38,7 @@ router.route([
     "/signup",
     "/login",
     "/portfoliohome",
-    "/portfolio/add"
+    "/market"
   ]).get(function(req, res) {
   res.sendFile(path.join(__dirname, "../../client/build/index.html"));
 });

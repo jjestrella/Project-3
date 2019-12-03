@@ -10,11 +10,12 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { Button } from "@material-ui/core";
+import Button  from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 import Fade from "@material-ui/core/Fade";
 import Backdrop from "@material-ui/core/Backdrop";
 import TextField from "@material-ui/core/TextField"
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -99,9 +100,12 @@ export default function(){
                 <Typography variant="h5" component="h3">
                     Portfolio Value: (import from db)
                 </Typography>
-                <Typography  variant="h7" component="h3">
+                <Typography  variant="h6" component="h3">
                     Unspent: (import from db after calc)
                 </Typography>
+                <Link to="/market">
+                    <Button variant="contained" color="primary">Market</Button>
+                </Link>
             </Paper>
             <Paper className={classes.root}>
                 <Table className={classes.table} aria-label="customized table">
