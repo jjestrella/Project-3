@@ -5,6 +5,7 @@ import MarketHead from "./marketHead";
 import MarketRow from "./marketRow";
 import Paper from "@material-ui/core/Paper";
 import { withStyles } from "@material-ui/styles";
+import User from "../../utils/Stores/User";
 
 const styles = {
     root: {
