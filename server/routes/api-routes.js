@@ -8,6 +8,9 @@ if (process.env.NODE_ENV !== "production") {
 
 const axios = require("axios");
 
+
+
+
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticatedData = require("../config/middleware/isAuthenticatedData");
 
