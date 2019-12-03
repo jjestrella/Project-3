@@ -151,7 +151,8 @@ export default function(){
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
-                                            <StyledTableRow key={row.name}>
+                                            <StyledTableRow>
+                                                {/* when you click buy it doesnt use the correct name of the row */}
                                                 <StyledTableCell>{row.name}</StyledTableCell>
                                                 <StyledTableCell align="center">
                                                     <TextField type="number" id="standard-basic" label="Quantity" />
