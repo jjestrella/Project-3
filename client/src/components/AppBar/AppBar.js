@@ -50,7 +50,7 @@ export default function NavAppBar() {
           <Typography variant="h6" className={classes.title}>
             <Button href="/portfoliohome" color="inherit">BCS Stocks</Button>
           </Typography>
-          <Button eventKey= "/logout" onClick= {logout} color="inherit">Logout</Button>
+          <Button onClick={logout} color="inherit">Logout</Button>
         </Toolbar>)}
       </AppBar>
     </div>
