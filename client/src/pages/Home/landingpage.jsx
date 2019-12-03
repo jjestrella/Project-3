@@ -56,10 +56,7 @@ export default function () {
         <Fragment>
        <AppBar />
         <Paper className={classes.root}>
-        <Typography variant="h1" component="h5">
-        <Box textAlign="center" m={1}>
-        dio operae, eu vulputate felis rhoncus.
-      </Box>
+        <Typography postion="top center" variant="h1" component="h5" className="type1">
           This is a sheet of paper.
         </Typography>
         <Typography component="p">
