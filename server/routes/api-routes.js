@@ -58,6 +58,21 @@ router.get("/api/crypto", function (req, res) {
     }}).then(({data}) => res.json(data)).catch(err => res.status(500).send);
 });
 
+router.post("/api/crypto", isAuthenticatedData, function (req, res) {
+  console.log(req.body);
+  db.boughtCrypto.create({
+    crypto: req.body.crypto,
+    quantity: req.body.quantity,
+    UserId: req.user.id
+  })
+    .then(function (dbCrypto) {
+      res.json(dbCrypto);
+    })
+    .catch(function (err) {
+      res.status(500).json(err);
+    });
+});
+
 // Route for logging user out
 router.post("/api/logout", function (req, res) {
   req.logout();

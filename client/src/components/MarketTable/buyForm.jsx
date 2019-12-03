@@ -1,34 +1,77 @@
-import React, { Component } from "react";
-import { withStyles } from "@material-ui/styles";
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import User from "../../utils/Stores/User";
+import API from "../../utils/Stores/Cryptos/cryptoAPI";
+import { useHistory } from 'react-router-dom';
 
 
-const styles = (theme) => ({
-    root: {
-      '& .MuiTextField-root': {
-        width: 200,
-      },
+const useStyles = makeStyles(theme => ({
+  root: {
+    '& > *': {
+      width: 200,
     },
-  });
+  },
+}));
 
+function BuyForm(props) {
+  
+  const [{user}] = User.useContext();
+  const classes = useStyles();
+  const history = useHistory();
 
-class BuyForm extends Component {
+  const [quantity, setQuantity] = useState(0);
+  const [total, setTotal] = useState(0);
 
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    setQuantity(e.target.value);
+    setTotal(props.crypto.currentPrice * e.target.value);
+  }
 
-    render(){
+  function setCrypto(crypto, quantity, UserId){
+    API.setCrypto({
+      crypto,
+      quantity,
+      UserId
+    }).then(crypto => {
+      console.log(crypto)
+      history.push("/portfoliohome");
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(user);
+    console.log(props.crypto.name);
+    console.log(quantity);
+
+    if(user.spending_cash<total || quantity===0){
+      console.log("costs too much or no quantity");
+      return;
+    }else{
+      setCrypto(props.crypto.name, quantity, user.id);
+    }
+
+    
+  }
+  
         return (
-        <form className={this.props.classes.root} noValidate autoComplete="off">
+        <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
             <TextField
                 label="Quantity"
                 id="outlined-size-normal"
                 variant="outlined"
                 type="number"
+                onChange={handleInputChange}
             />
             <TextField
                 label="Price"
                 id="outlined-size-normal"
-                defaultValue={this.props.crypto.currentPrice}
+                defaultValue={props.crypto.currentPrice}
                 variant="outlined"
                 InputProps={{
                     readOnly: true,
@@ -37,13 +80,16 @@ class BuyForm extends Component {
             <TextField
                 label="Total"
                 id="outlined-size-normal"
-                defaultValue="Total"
+                value={total}
                 variant="outlined"
+                onChange={handleInputChange}
+                InputProps={{
+                  readOnly: true,
+                }}
             />
-            <Button variant="contained" color="primary">Buy</Button>
+            <Button type="submit" variant="contained" color="primary">Buy</Button>
         </form>
         )
     }
-}
 
-export default withStyles(styles)(BuyForm);
+export default BuyForm;
