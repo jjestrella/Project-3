@@ -77,16 +77,13 @@ function BuyForm(props) {
             console.log(newTotal);
             setUserTotal(newTotal);
             deleteCrypto(props.crypto.name);
-        } else if(quantity < props.crypto.quantity) {
+        } else {
             let newTotal = user.spending_cash + total;
             console.log(newTotal);
             sellCrypto(props.crypto.name, quantity, user.id);
             setUserTotal(newTotal);
         }
     }
-
-
-
 
     return (
         <Fragment>
