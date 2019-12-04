@@ -6,8 +6,6 @@ import User from "../../utils/Stores/User";
 import API from "../../utils/Stores/Cryptos/cryptoAPI";
 import APIUser from "../../utils/Stores/User/UserAPI";
 import { useHistory } from 'react-router-dom';
-// import Snackbar from "../Snackbar/snackBar";
-
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,8 +14,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
 }));
-
-// const { USER_LOADING, SET_USER, USER_ERROR } = User.actions;
 
 function BuyForm(props) {
   User.refreshOnLoad();
