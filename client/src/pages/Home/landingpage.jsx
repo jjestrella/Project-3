@@ -4,12 +4,12 @@ import AppBar from "../../components/AppBar/AppBar";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-
+import Image from "../../styles";
 
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(27, 18),
-    backgroundColor: "#607d8b",
+    backgroundImage: `url(${Image})`,
     justify: "center",
     alignItems: "center",
     position: "relative"
