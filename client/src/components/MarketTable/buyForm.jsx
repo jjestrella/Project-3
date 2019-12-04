@@ -22,8 +22,6 @@ function BuyForm(props) {
   const classes = useStyles();
   const history = useHistory();
   
-  // const [/* user not needed */, userDispatch] = User.useContext();
-
   const [quantity, setQuantity] = useState(0);
   const [total, setTotal] = useState(0);
 
@@ -56,10 +54,6 @@ function BuyForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
-    console.log(props.crypto.name);
-    console.log(quantity);
-    console.log(total);
     
     if(user.spending_cash<total || quantity===0){
       console.log("costs too much or no quantity");
@@ -69,7 +63,6 @@ function BuyForm(props) {
       console.log(newTotal);
       setCrypto(props.crypto.name, quantity, user.id);
       setUserTotal(newTotal);
-      // userDispatch({ type: USER_LOADING });
 
       history.push("/portfoliohome");
     }
