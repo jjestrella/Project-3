@@ -48,23 +48,26 @@ router.get("/logout", function (req, res) {
   res.redirect("/");
 });
 
-const apiKey  = `CMC_PRO_API_KEY=${process.env.CMC_PRO_API_KEY}`;
+const apiKey = `CMC_PRO_API_KEY=${process.env.CMC_PRO_API_KEY}`;
 
+// router for using the crypto api
 router.get("/api/crypto", function (req, res) {
-    return axios.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?" + apiKey, {params: {
-        start: '1',
-        limit: '10',
-        convert: 'USD'
-    }}).then(({data}) => res.json(data)).catch(err => res.status(500).send);
+  return axios.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?" + apiKey, {
+    params: {
+      start: '1',
+      limit: '10',
+      convert: 'USD'
+    }
+  }).then(({ data }) => res.json(data)).catch(err => res.status(500).send);
 });
 
+// router for buying a crypto and storing in db
 router.post("/api/crypto", isAuthenticatedData, function (req, res) {
   console.log(req.body);
-  db.boughtCrypto.create({
-    crypto: req.body.crypto,
-    quantity: req.body.quantity,
-    UserId: req.user.id
-  })
+  db.sequelize.query(
+    "INSERT INTO finance_db.boughtcryptos (crypto, quantity, UserId)" +
+    " VALUES (?,?,?) ON DUPLICATE KEY UPDATE quantity = quantity + ?",
+    { replacements: [req.body.crypto, parseInt(req.body.quantity), req.user.id, parseInt(req.body.quantity)] })
     .then(function (dbCrypto) {
       res.json(dbCrypto);
     })
@@ -72,6 +75,51 @@ router.post("/api/crypto", isAuthenticatedData, function (req, res) {
       res.status(500).json(err);
     });
 });
+
+// router for selling a crypto and updating db
+router.post("/api/sell-crypto", isAuthenticatedData, function (req, res) {
+  console.log(req.body);
+  db.sequelize.query(
+    "INSERT INTO finance_db.boughtcryptos (crypto, quantity, UserId)" +
+    " VALUES (?,?,?) ON DUPLICATE KEY UPDATE quantity = quantity - ?",
+    { replacements: [req.body.crypto, parseInt(req.body.quantity), req.user.id, parseInt(req.body.quantity)] })
+    .then(function (dbCrypto) {
+      res.json(dbCrypto);
+    })
+    .catch(function (err) {
+      res.status(500).json(err);
+    });
+});
+
+// router for getting users bought cryptos
+router.get("/api/bought-crypto", isAuthenticatedData, function (req, res) {
+  db.boughtCrypto.findAll({
+    where: {
+      UserId: req.user.id
+    }
+  })
+    .then(function (dbCryptos) {
+      res.json(dbCryptos);
+    })
+    .catch(function (err) {
+      res.status(500).json(err);
+    });
+});
+
+// removing a crypto if the user sells all 
+router.post("/api/delete-crypto", isAuthenticatedData, function(req, res){
+  console.log(req.body);
+  db.boughtCrypto.destroy({
+    where: {
+      crypto: req.body.crypto
+    }
+  }).then(function (dbCryptos) {
+    res.json(dbCryptos);
+  })
+  .catch(function (err){
+    res.status(500).json(err);
+  })
+})
 
 // Route for logging user out
 router.post("/api/logout", function (req, res) {
@@ -101,10 +149,10 @@ router.post("/api/user_data", isAuthenticatedData, function (req, res) {
     spending_cash: req.body.total
   },
     {
-    where: {
-      id: req.user.id
-    }
-  })
+      where: {
+        id: req.user.id
+      }
+    })
     .then(function (dbCrypto) {
       res.json(dbCrypto);
     })

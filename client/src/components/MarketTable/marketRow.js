@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import { withStyles } from '@material-ui/core/styles';
-import Button from "@material-ui/core/Button";
 import BuyButton from "./buyButton";
 
 const StyledTableCell = withStyles(theme => ({
