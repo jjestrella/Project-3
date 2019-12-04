@@ -40,7 +40,7 @@ export default function NavAppBar() {
         {!user.email && (
             <Toolbar>
                 <Typography variant="h6" className={classes.title}>
-                BCS Stocks
+                BCS Crypto
                 </Typography>
                 <Button href= "/signup" color="inherit">Signup</Button>
                 <Button href= "/login" color="inherit">Login</Button>
