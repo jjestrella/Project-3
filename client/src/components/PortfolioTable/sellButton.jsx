@@ -4,7 +4,7 @@ import Modal from "@material-ui/core/Modal";
 import { withStyles } from "@material-ui/core/styles"
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import BuyForm from "./buyForm";
+import SellForm from "./sellForm";
 
 
 const styles = (theme) => ({
@@ -27,7 +27,7 @@ const styles = (theme) => ({
       },
   });
 
-class BuyButton extends Component {
+class SellButton extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -46,7 +46,7 @@ class BuyButton extends Component {
     render(){
         return (
             <Fragment>
-            <Button onClick={this.handleOpen}>Buy</Button>
+            <Button onClick={this.handleOpen}>Sell</Button>
                 <Modal
                     aria-labelledby="transition-modal-title"
                     aria-describedby="transition-modal-description"
@@ -61,7 +61,7 @@ class BuyButton extends Component {
                 >
                     <Fade in={this.state.isOpen}>
                     <div className={this.props.classes.paper}>
-                        <BuyForm crypto={this.props.crypto}/>
+                        <SellForm crypto={this.props.crypto}/>
                     </div>
                     </Fade>
                 </Modal>
@@ -70,4 +70,4 @@ class BuyButton extends Component {
     }
 }
 
-export default withStyles(styles)(BuyButton);
+export default withStyles(styles)(SellButton);

@@ -16,5 +16,8 @@ export default {
   // Creates a user and logs them in
   signup: function(userData) {
     return axios.post("/api/signup", userData).then(({data}) => data);
+  },
+  setTotal: function(userData) {
+    return axios.post("/api/user_data", userData).then(({data}) => data);
   }
 };
