@@ -161,32 +161,5 @@ router.post("/api/user_data", isAuthenticatedData, function (req, res) {
     });
 });
 
-// router.get("/api/portfoliohome", isAuthenticatedData, function (req, res) {
-//   db.Candle.findAll({
-//     where: {
-//       UserId: req.user.id
-//     }
-//   })
-//     .then(function (dbCandles) {
-//       res.json(dbCandles);
-//     })
-//     .catch(function (err) {
-//       res.status(500).json(err);
-//     });
-// });
-// router.post("/api/portfoliohome", isAuthenticatedData, function (req, res) {
-//   db.Candle.create({
-//     name: req.body.name,
-//     scent: req.body.scent,
-//     height: req.body.height,
-//     UserId: req.user.id
-//   })
-//     .then(function (dbCandle) {
-//       res.json(dbCandle);
-//     })
-//     .catch(function (err) {
-//       res.status(500).json(err);
-//     });
-// });
 
 module.exports = router;
